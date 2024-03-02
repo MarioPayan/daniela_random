@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holi Daniela</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+    }
+    .title, .subtitle {
+      text-align: center;
+    }
+    .subtitle {
+      display: none;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 50px;
+    }
+    .button {
+      position: relative;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">¿Crees que Mario es el mejor del mundo en todo?</h1>
+  <h2 class="subtitle">Lo sabía :3</h2>
+  <div class="buttons">
+    <button class="button" onclick="myClick()">Sí, y por eso lo amo</button>
+    <button class="button" onmouseover="changePosition()">No, qué va</button>
+  </div>
+  <script>
+    function myClick() {
+      document.getElementsByClassName("subtitle")[0].style.display = "block";
+    }
+    function changePosition() {
+      var button = document.getElementsByClassName("button")[1];
+      var maxWidth = window.innerWidth - button.offsetWidth;
+      var maxHeight = window.innerHeight - button.offsetHeight;
+      var newLeft = Math.floor(Math.random() * maxWidth);
+      var newTop = Math.floor(Math.random() * maxHeight);
+      button.style.left = newLeft + "px";
+      button.style.top = newTop + "px";
+      button.style.position = "absolute";
+    }
+  </script>
+</body>
+</html>
