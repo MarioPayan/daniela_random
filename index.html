@@ -1,55 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Holi Daniela</title>
+  <title>¿Daniela subnormal?</title>
   <style>
     body {
       display: flex;
       flex-direction: column;
       width: 100%;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      font-family: 'Arial', sans-serif;
     }
-    .title, .subtitle {
+
+    .title,
+    .gif {
       text-align: center;
+      color: #fff;
     }
-    .subtitle {
+
+    .gif {
       display: none;
+      margin-top: 20px;
     }
+
     .buttons {
       display: flex;
       flex-direction: row;
       justify-content: center;
       gap: 50px;
+      margin-top: 50px;
     }
-    .button {
-      position: relative;
+
+    .static-button,
+    .moving-button {
       font-size: 20px;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.5s ease, transform 0.5s ease, left 0.5s ease, top 0.5s ease;
+      background: linear-gradient(45deg, #f093fb, #f5576c);
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .moving-button {
+      position: relative;
+    }
+
+    .moving-button:hover,
+    .static-button:hover {
+      background: linear-gradient(45deg, #f5576c, #f093fb);
+      transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
-  <h1 class="title">¿Crees que Mario es el mejor del mundo en todo?</h1>
-  <h2 class="subtitle">Lo sabía :3</h2>
+  <h1 class="title">¿Crees que Daniela es subnormal?</h1>
+  <img class="gif" src="dancing.gif" alt="daniela bailando" />
+  <audio id="audioPlayer" src="chipi_chipi.mp3"></audio>
   <div class="buttons">
-    <button class="button" onclick="myClick()">Sí, y por eso lo amo</button>
-    <button class="button" onmouseover="changePosition()">No, qué va</button>
+    <button class="static-button" onclick="myClick()">Obvio sí</button>
+    <button class="moving-button" onmouseover="changePosition()">No creo</button>
   </div>
   <script>
     function myClick() {
-      document.getElementsByClassName("subtitle")[0].style.display = "block";
+      document.getElementsByClassName("gif")[0].style.display = "block";
+      document.getElementById("audioPlayer").play();
     }
     function changePosition() {
-      var button = document.getElementsByClassName("button")[1];
-      var maxWidth = window.innerWidth - button.offsetWidth;
-      var maxHeight = window.innerHeight - button.offsetHeight;
-      var newLeft = Math.floor(Math.random() * maxWidth);
-      var newTop = Math.floor(Math.random() * maxHeight);
-      button.style.left = newLeft + "px";
-      button.style.top = newTop + "px";
-      button.style.position = "absolute";
+      var button = document.getElementsByClassName("moving-button")[0];
+
+      if (button.style.position !== "absolute") {
+        var rect = button.getBoundingClientRect();
+        button.style.position = "absolute";
+        button.style.left = rect.left + "px";
+        button.style.top = rect.top + "px";
+      }
+
+      window.requestAnimationFrame(function () {
+        var newLeft = Math.floor(Math.random() * window.innerWidth - button.offsetWidth);
+        var newTop = Math.floor(Math.random() * window.innerHeight - button.offsetHeight);
+        button.style.left = newLeft + "px";
+        button.style.top = newTop + "px";
+      });
     }
   </script>
 </body>
+
 </html>
