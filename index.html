@@ -69,7 +69,13 @@
   <audio id="audioPlayer" src="chipi_chipi.mp3"></audio>
   <div class="buttons">
     <button class="static-button" onclick="myClick()">Obvio sí</button>
-    <button class="moving-button" onmouseover="changePosition()">No creo</button>
+    <button
+      class="moving-button"
+      onpointerenter="changePosition()"
+      onclick="changePosition()"
+      onmouseover="changePosition()">
+      No creo
+    </button>
   </div>
   <script>
     function myClick() {
